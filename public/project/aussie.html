@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pangji Photo::au</title>
+<link rel="stylesheet" type="text/css" href="aussie.css" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script>
+	
+	window.onscroll = function() {myFunction()};
+	
+	function myFunction() {
+	    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+	        document.getElementById("menu").style.position = "fixed";
+	        document.getElementById("menu").style.backgroundColor="#BDBDBD";
+	        document.getElementById("gallery").style.visibility="visible";
+	        document.getElementById("gallery").className="fadein";
+	        document.getElementById("load").className = "loadbar";
+	        document.getElementById("scroll").style.visibility="hidden";
+	        document.getElementById("wrapper").style.backgroundColor = "black";
+	    } else {
+	        document.getElementById("menu").style.position = "static";
+	        document.getElementById("menu").removeAttribute("style");
+	        document.getElementById("wrapper").style.backgroundColor = "white";
+	    }
+	}
+
+	
+	function menu1(){document.getElementById("video").style.backgroundColor="white";document.getElementById("video").style.color="black";}
+	function menu2(){document.getElementById("us").style.backgroundColor="white";document.getElementById("us").style.color="black";}
+	function menu3(){document.getElementById("au").style.backgroundColor="white";document.getElementById("au").style.color="black";}
+	function menu4(){document.getElementById("nz").style.backgroundColor="white";document.getElementById("nz").style.color="black";}
+	function menu11(){document.getElementById("video").removeAttribute("style");}
+	function menu22(){document.getElementById("us").removeAttribute("style");}
+	function menu33(){document.getElementById("au").removeAttribute("style");}
+	function menu44(){document.getElementById("nz").removeAttribute("style");}
+	
+	function play(){
+		var playSrc = document.getElementById("bgmusic");
+		if(playSrc.paused){
+			playSrc.play();
+			}
+		else{
+			playSrc.pause();
+			}
+		}
+
+	function callImg(imgNumber){
+		document.getElementById("Img").src = "img/au/img/"+imgNumber+".jpg";
+	}
+	
+	var imageSrc = [ "img/au/img/1.jpg","img/au/img/2.jpg","img/au/img/3.jpg", "img/au/img/4.jpg", "img/au/img/5.jpg", "img/au/img/6.jpg", "img/au/img/7.jpg"];
+	var imageThumSrc = ["img/au/thum/thum1.jpg","img/au/thum/thum2.jpg","img/au/thum/thum3.jpg","img/au/thum/thum4.jpg","img/au/thum/thum5.jpg","img/au/thum/thum6.jpg","img/au/thum/thum7.jpg"];
+	var counter = 0;
+	
+	function downImg(){
+		var gallerythum="";		
+		counter = (counter + 1) % 7;	
+		for(var i=0 ; i<5 ; i++){
+			gallerythum += "<div class='thum''>";
+			gallerythum += "<img src='"+imageThumSrc[(i+counter)%7]+"' onclick='callImg("+((i+counter)%7+1)+")'/>";
+			gallerythum += "</div>";			
+		}	
+		
+		document.getElementById("gallerythum").innerHTML = gallerythum;
+	}
+	
+	function upImg(){
+		var gallerythum="";		
+		counter = (counter - 1) % 7;
+		if(counter <0)counter+=7;
+		for(var i=0 ; i<5 ; i++){
+			gallerythum += "<div class='thum''>";
+			gallerythum += "<img src='"+imageThumSrc[(i+counter)%7]+"' onclick='callImg("+((i+counter)%7+1)+")'/>";
+			gallerythum += "</div>";			
+		}	
+		
+		document.getElementById("gallerythum").innerHTML = gallerythum;
+	}
+	
+
+	function dropMenu(){
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
+	window.onclick = function(event){
+		if(!event.target.matches('.dropbtn')){
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for(i=0; i<dropdowns.length ; i++){
+				var openDropdown = dropdowns[i];
+				if(openDropdown.classList.contains('show"')){
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
+	
+	
+</script>
+</head>
+<body>
+<div id="wrapper">
+	
+		<nav id ="navbar">
+			<div id="menu">
+				<div>
+					<a href="main.html" id = "home"><img src="img/home1.png" alt="home1" /></a>
+				</div>
+				<ul>
+					<li><a href="us.html" id = "us" onmouseover="menu2()" onmouseleave="menu22()">United States</a></li>
+					<li><a href="aussie.html" id = "au" onmouseover="menu3()" onmouseleave="menu33()">Australia</a></li>
+					<li><a href="nz.html" id = "nz" onmouseover="menu4()" onmouseleave="menu44()">New Zealand</a></li>
+					<li><a href="video.html" id="video"  onmouseover="menu1()" onmouseleave="menu11()">Video</a></li>
+				</ul>
+				<ul id="contact">
+					<li>
+						<div class="dropdown">
+							<div onclick="dropMenu()" class="dropbtn"><img src="img/icon/contact.png" id="dropmenu"></div>
+							<div id="myDropdown" class="dropdown-content">
+								<a href="http://www.facebook.com/cuzis1723" target="_blank"><img src="img/icon/fb.png" alt="facebook"></a>
+								<a href="http://www.instagram.com/pangji0" target="_blank"><img src="img/icon/insta.png" alt="instagram"></a>
+								<a href="http://www.500px.com/cuzis" target="_blank"><img src="img/icon/500px.png" alt="500px"></a>
+							</div>
+						</div>
+					</li>
+					<li><audio src="src/bgmusic_au.mp3" id="bgmusic"></audio><img src="img/icon/play.png" onclick="play()" alt="play"/></li>
+				</ul>
+			</div>
+		</nav> 
+		
+		<br/><br/><br/><br/>
+			<div id="map"><img src="img/au/mapAU.jpg" alt="map"></div>
+		<br/><div id="scroll">SCROLL DOWN</div>
+			<div id="load" class="load">GALLERY LOADING</div>
+		<br/><br/><br/>
+		
+		<div id="gallery">
+			<div id="galleryMain">
+				<div id="galleryImg">
+					<img id="Img" src="img/au/img/1.jpg" alt="maingallery">
+				</div>
+				<div id="galleryCap"><br/>
+					Australia, 2014
+				</div>
+			</div>
+		
+			<div id="gallerynav">
+				<div id="up" onclick="upImg()"><img src="img/icon/up.png" alt="up"></div>
+					<div id="gallerythum">
+						<div class = "thum"><img src="img/au/thum/thum1.jpg" onclick="callImg(1)" alt="thumbnail"></div>
+						<div class = "thum"><img src="img/au/thum/thum2.jpg" onclick="callImg(2)" alt="thumbnail"></div>
+						<div class = "thum"><img src="img/au/thum/thum3.jpg" onclick="callImg(3)" alt="thumbnail"></div>
+						<div class = "thum"><img src="img/au/thum/thum4.jpg" onclick="callImg(4)" alt="thumbnail"></div>
+						<div class = "thum"><img src="img/au/thum/thum5.jpg" onclick="callImg(5)" alt="thumbnail"></div>
+					</div>
+				<div id="down" onclick="downImg()"><img src="img/icon/down.png" alt="down"></div>
+				<!-- 사진 비율 180 x 120 -->
+			</div>
+		</div>
+		<br/><br/>
+</div>
+</body>
+</html>

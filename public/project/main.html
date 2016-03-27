@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pangji Photo::main</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+//Calendar script
+	var refdate = new Date();
+
+	var curDate = refdate.getDate();	//현재 날짜
+	var curYear = refdate.getFullYear();	//현재 년도
+	var curMonth = refdate.getMonth();	//현재 월
+	var refMonth = refdate.getMonth();
+
+	var makeCal = function(){
+		
+	var table = document.getElementById("calendar");
+	var row = table.insertRow(-1);
+	var th = document.createElement("TH");
+	th.setAttribute("colspan","7");
+	th.innerHTML = "<span id='curmon'></span> <img src='img/right.png' onclick='makeCal_in(curMonth+1)' alt='right' cursor='auto'><img src='img/left.png' alt='left' onclick='makeCal_in(curMonth-1)'>";
+	row.appendChild(th);
+	var row = table.insertRow(-1);
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Sun";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Mon";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Tue";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Wed";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Thu";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Fri";
+	var cell = row.insertCell(-1);
+	cell.innerHTML = "Sat";
+	
+	makeCal_in(curMonth);
+}
+
+	
+	function makeCal_in(currentmonth){
+		var table = document.getElementById("calendar");
+		var rows = table.rows;
+		
+		while(rows[2] != null){
+				table.deleteRow(2);
+		}	//그 전에 존재하던 데이터가 있으면 삭제
+		
+		var newDate = new Date(curYear,currentmonth,1);
+		var firstday = newDate.getDay(); //매월의 시작일
+		var newMonth = newDate.getMonth();//현재월
+		var newYear = newDate.getFullYear();//현재년도
+		
+		if(newMonth == 0 || newMonth == 2|| newMonth == 3|| newMonth == 6|| newMonth == 7|| newMonth == 9|| newMonth == 11)
+			lastday = 31;
+		else if(newMonth ==1)
+			lastday = 28;
+		else
+			lastday = 30;
+		curMonth = currentmonth;
+		var row = table.insertRow(-1);
+		var count = 1;
+		for (var i= 0 ; i < firstday ; i++){
+			var cell = row.insertCell(-1);
+			count++;
+		}
+		for(var j=1; j<= lastday ; j++){
+			var cell = row.insertCell(-1);
+			if(j == curDate && newYear == curYear && newMonth == refMonth){
+				cell.innerHTML = "<span id='today'>"+j+"</span>";
+			}
+			else
+				cell.innerHTML = j;
+			if(count%7 == 0){
+				var row = table.insertRow(-1);
+			}
+			count++;		
+			
+		}
+		
+		document.getElementById("curmon").innerHTML = newYear + "." + (newMonth+1);
+	}
+	
+//Calendar script end
+	
+	window.onscroll = function() {myFunction()};
+	
+	function myFunction() {
+	    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+	        document.getElementById("menu").style.position = "fixed";
+	        document.getElementById("calendar").style.visibility = "hidden";
+	        document.getElementById("nyvideo").style.visibility = "visible";
+	        document.getElementById("nyvideo").play();
+	        document.getElementById("load").className = "loadbar";
+	    } else {
+	        document.getElementById("menu").style.position = "static";
+	        document.getElementById("menu").removeAttribute("style");
+	        document.getElementById("calendar").style.visibility = "visible";
+	        document.getElementById("nyvideo").style.visibility = "hidden";
+	        document.getElementById("nyvideo").pause();
+	        document.getElementById("load").className = "load";
+	    }
+	    if(document.body.scrollTop > 80){
+	        }
+	}
+//Window onscroll evenet
+
+	function menu1(){document.getElementById("video").style.backgroundColor="white";document.getElementById("video").style.color="black";}
+	function menu2(){document.getElementById("us").style.backgroundColor="white";document.getElementById("us").style.color="black";}
+	function menu3(){document.getElementById("au").style.backgroundColor="white";document.getElementById("au").style.color="black";}
+	function menu4(){document.getElementById("nz").style.backgroundColor="white";document.getElementById("nz").style.color="black";}
+	function menu11(){document.getElementById("video").removeAttribute("style");}
+	function menu22(){document.getElementById("us").removeAttribute("style");}
+	function menu33(){document.getElementById("au").removeAttribute("style");}
+	function menu44(){document.getElementById("nz").removeAttribute("style");}
+	
+	function play(){
+		var playSrc = document.getElementById("bgmusic");
+		if(playSrc.paused){
+			playSrc.play();
+			}
+		else{
+			playSrc.pause();
+			}
+		}
+	
+	function dropMenu(){
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
+	window.onclick = function(event){
+		if(!event.target.matches('.dropbtn')){
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for(i=0; i<dropdowns.length ; i++){
+				var openDropdown = dropdowns[i];
+				if(openDropdown.classList.contains('show"')){
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<div id="wrapper">
+	
+		<nav id ="navbar">
+			<div id="menu">
+				<div>
+					<a href="main.html" id = "home"><img src="img/home1.png" alt="home1" /></a>
+				</div>
+				<ul>
+					<li><a href="us.html" id = "us" onmouseover="menu2()" onmouseleave="menu22()">United States</a></li>
+					<li><a href="aussie.html" id = "au" onmouseover="menu3()" onmouseleave="menu33()">Australia</a></li>
+					<li><a href="nz.html" id = "nz" onmouseover="menu4()" onmouseleave="menu44()">New Zealand</a></li>
+					<li><a href="video.html" id="video"  onmouseover="menu1()" onmouseleave="menu11()">Video</a></li>
+				</ul>
+				<ul id="contact">
+					<li>
+						<div class="dropdown">
+							<div onclick="dropMenu()" class="dropbtn"><img src="img/icon/contact.png" id="dropmenu" alt="dropmenu"></div>
+							<div id="myDropdown" class="dropdown-content">
+								<a href="http://www.facebook.com/cuzis1723" target="_blank"><img src="img/icon/fb.png" alt="facebook"></a>
+								<a href="http://www.instagram.com/pangji0" target="_blank"><img src="img/icon/insta.png" alt="instagram"></a>
+								<a href="http://www.500px.com/cuzis" target="_blank"><img src="img/icon/500px.png" alt="500px"></a>
+							</div>
+						</div>
+					</li>
+					<li><audio src="src/bgmusic.mp3" id="bgmusic" autoplay></audio><img src="img/icon/play.png" onclick="play()" alt="play"/></li>
+				</ul>
+			</div>
+		</nav>
+			<div id="mainpage">
+				<div>
+						<br/>
+						<br/>
+						<table id="calendar">
+							<script>
+								var x = makeCal();
+							</script>
+						</table>
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				<p id="main_text">
+				WELCOME<br/>
+				NYC<br/>
+				</p>
+			</div>
+		<div>
+			<div id="load" class="load">VIDEO LOADING</div>
+			<div>
+				<video id="nyvideo" src="src/ny.mp4" controls muted></video>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

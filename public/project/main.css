@@ -1,0 +1,140 @@
+@charset "UTF-8";
+*{font-family: 'Montserrat', sans-serif;padding:0px;margin:0px;}
+#wrapper{
+	width : 100%;
+	height:1200px;	
+}
+nav{
+	width:100%;
+	height:70px;
+	z-index:50;
+	background-color:#F5A9BC;
+}
+nav ul{
+	width:560px;
+	padding-top:23px;
+	float:left;
+}
+nav ul li{
+	float:left;
+	text-decoration:none;
+	color:white;
+	display:block;
+	top:5px;
+	margin-left:50px;
+}
+nav ul li a:link{
+	text-decoration:none;
+	color:white;
+}
+nav ul li a:visited{
+	text-decoration:none;
+	color:white;
+}
+nav ul li a:hover{
+	text-decoration:none;
+	font-size:1.2em;
+	font-weight:bold;
+}
+nav ul li a{
+	transition: font-size 1s;
+}
+#home>img{
+	float:left;
+	height:70px;
+	margin-left:10px;
+	margin-right:50px;
+}
+#menu{float:left; width:100%;}
+#menu>div{height:70px;float:left;}
+#contact{float:right;width:350px;
+	padding-top:20px;}
+#contact>li{float:right;}
+#dropmenu{margin-right:30px;}
+#contact>li:nth-child(2)>img{cursor:pointer;}
+#mainpage{
+	 background-image :url("img/main1.jpg");
+	 background-size: cover;
+	 background-attachment: inherit;
+	 background-position: center center;
+	 background-repeat: no-repeat;
+	 height: 800px;
+	 margin-top:0px;
+}
+
+#calendar th img{
+	float:right;margin-right:5px;cursor:pointer;}
+th span{float:left;margin-left:20px;}
+
+#calendar{
+	color:white;
+	opacity:0.8;
+	text-align : center;
+	margin:auto;
+	padding:15px;
+	height:202px;
+}
+#calendar tbody tr td{width:50px;}
+#today{font-weight:bold;color:red;}
+
+#main_text{
+	font-size:100px;
+	color:white;
+	text-align:center;
+}
+
+.load{
+	visibility:hidden;
+}
+.loadbar{
+	width:1%;
+	height:20px;
+	background-color:white;
+	animation-name:loadingbar;
+	animation-duration:3s;
+	margin-left:0px;
+	margin-right:0px;
+	padding:5px;
+	text-align:center;
+	font-weight:bold;
+	color:white;
+}
+@keyframes loadingbar{
+	0%{background-color : white;}
+	100%{background-color : pink; width:100%; color:black;}
+}
+
+video{
+	visibility:hidden;
+	z-index:0;
+}
+#nyvideo{
+	width:100%;
+}
+
+
+.dropbtn{
+	height:32px;
+	border:none;
+	cursor:pointer;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+	display:none;
+	position:absolute;
+	top:50px;
+	right:23px;
+	text-align:center;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ 
+}
+.dropdown-content a {
+    padding: 8px 8px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1}
+.show {display:block;}
